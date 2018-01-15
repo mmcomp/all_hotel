@@ -1,0 +1,343 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>
+		راهنمای موضوعی نرم افزار هتلداری و رزرو آنلاین بهار
+	</title>
+	<style>
+		a{
+			font-family: Tahoma;
+			font-size:12px;
+			/*color : #97aee0;*/
+			color : #ffffff;
+			cursor : pointer;
+		}
+		li:hover{
+			background-color : #192d42;
+			color : green;
+		}
+		.ifrm{
+			width:100%;
+			height:700px;
+			border-style : dashed;
+			background-color: #dfe1e3;
+		}
+	</style>
+	<script language="javascript">
+		function a_clicked(e)
+		{
+			if (!e) var e = window.event;
+			//var relTarg = e.relatedTarget || e.toElement || e.which;
+			var relTarg = (window.event) ? e.srcElement : e.target;
+			//alert(relTarg.name);
+			document.getElementById('tpage').src = relTarg.name;
+			return(false);
+		}
+		function attachClick(fn,tag)
+		{
+			var tags = document.getElementsByTagName(tag);
+			for(var i =0;i < tags.length;i++)
+			{
+
+				tags[i].name = tags[i].href;
+				tags[i].href = null;
+				tags[i].href = "#";
+				tags[i].onclick = a_clicked;
+				el = tags[i];
+				if (el.addEventListener) { 
+				    el.addEventListener('click', a_clicked, false); 
+				} else if (el.attachEvent) { 
+				    el.attachEvent('onclick', a_clicked); 
+				}
+			}
+		}
+	</script>
+</head>
+<body dir="rtl" style="background-color:#9cb4cd;">
+	<table width="100%" border=0  >
+		<tr>
+			<td colspan="2">
+				<h2 align="center" style="font-family:b titr,titr,arial;">
+					راهنمای موضوعی نرم‌افزار هتلداری و رزرو آنلاین بهار
+				</h2>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:20%;">
+				<ul>
+					<li>
+						<a href="help_login.html" target="_blank">
+							صفحه ورود
+
+						</a>
+					</li>
+					<li>
+						<a href="help_index.html" target="_blank">
+							صفحه اصلی
+
+						</a>
+					</li>
+					<li>
+						<a href="help_hotel_manage.html" target="_blank">
+							مدیریت هتل
+
+						</a>
+					</li>
+					<li>
+						<a href="help_dastrasi.html" target="_blank">
+							دسترسی هتل
+
+						</a>
+					</li>
+					<li>
+						<a href="help_users.html" target="_blank">
+							مدیریت کاربران
+
+						</a>
+					</li>
+					<li>
+						<a href="help_hozoorgheyab.html" target="_blank">
+							حضور و غیاب پرسنل
+
+						</a>
+					</li>
+					<li>
+						<a href="help_agancy.html" target="_blank">
+							مدیریت آژانس‌ها (طرف قراردادها و یا مشتریان رزرو گیرنده)
+
+						</a>
+					</li>
+					<li>
+						<a href="help_daftar.html" target="_blank">
+							مدیریت دفاتر(نمایندگی‌های مجاز به انجام رزرو)
+
+						</a>
+					</li>
+					<li>
+						<a href="help_moeen.html" target="_blank">
+							حساب معین
+
+						</a>
+					</li>
+					<li>
+						<a href="help_kol.html" target="_blank">
+							حساب کل
+
+						</a>
+					</li>
+					<li>
+						<a href="help_sabtsanad.html" target="_blank">
+							ثبت سند
+
+						</a>
+					</li>
+					<li>
+						<a href="help_dariaftpardakht.html" target="_blank">
+							ثبت دریافت/پرداخت
+
+						</a>
+					</li>
+					<li>
+						<a href="help_gozareshtarikhasnad.html" target="_blank">
+							گزارش تاریخ اسناد
+
+						</a>
+					</li>
+					<li>
+						<a href="help_gozareshmande.html" target="_blank">
+							گزارش مانده
+
+						</a>
+					</li>
+					<li>
+						<a href="help_gozareshasnad.html" target="_blank">
+							گزارش اسناد
+
+						</a>
+					</li>
+					<li>
+						<a href="help_bastansalemali.html" target="_blank">
+							بستن سال مالی
+
+						</a>
+					</li>
+
+					<li>
+						<a href="help_manageanbar.html" target="_blank">
+							مدیریت انبار
+
+						</a>
+					</li>
+					<li>
+						<a href="help_tarifvahed.html" target="_blank">
+							واحد کالا
+
+						</a>
+					</li>
+					<li>
+						<a href="help_kala.html" target="_blank">
+							کالا
+
+						</a>
+					</li>
+					<li>
+						<a href="help_residvorood.html" target="_blank">
+							ورود به انبار
+
+						</a>
+					</li>
+					<li>
+						<a href="help_residkhorooj.html" target="_blank">
+							خروج از انبار
+
+						</a>
+					</li>
+					<li>
+						<a href="help_residbazgasht.html" target="_blank">
+							بازگشت به انبار
+
+						</a>
+					</li>
+					<li>
+						<a href="help_jozeeatkalatarkibi.html" target="_blank">
+							جزئیات کالای ترکیبی
+
+						</a>
+					</li>
+					<li>
+						<a href="help_kalatarkibi.html" target="_blank">
+							کالای ترکیبی
+
+						</a>
+					</li>
+					<li>
+						<a href="help_paziresh.html" target="_blank">
+							پذیرش
+
+						</a>
+					</li>
+					<li>
+						<a href="help_infopaziresh.html" target="_blank">
+							اطلاعات پایه پذیرش
+
+						</a>
+					</li>
+					<li>
+						<a href="help_vazeeatotagh.html" target="_blank">
+							وضعیت روزانه اتاق‌ها (Rack)
+
+						</a>
+					</li>
+					<li>
+						<a href="help_nezafatshode.html" target="_blank">
+							اتاق آماده تحویل
+
+						</a>
+					</li>
+					<li>
+						<a href="help_kharejazsevvice.html" target="_blank">
+							غیر فعال کردن اتاق
+
+						</a>
+					</li>
+					<li>
+						<a href="help_tamirotagh.html" target="_blank">
+							تعمیر اتاق
+
+						</a>
+					</li>
+					<li>
+						<a href="help_nezafatotagh.html" target="_blank">
+							نظافت اتاق
+
+						</a>
+					</li>
+					<li>
+						<a href="help_listkarbaranonline.html" target="_blank">
+							مشاهده کاربران آنلاین
+
+						</a>
+					</li>
+					<li>
+						<a href="help_listvoroodkhorooj.html" target="_blank">
+							مشاهده لیست ورود و خروج
+
+						</a>
+					</li>
+					<li>
+						<a href="help_backup.html" target="_blank">
+							پشتیبان‌گیری
+
+						</a>
+					</li>
+					<li>
+						<a href="help_restore.html" target="_blank">
+							بروزرسانی نسخه پشتیبان
+
+						</a>
+					</li>
+					<li>
+						<a href="help_gozareshersalpayamak.html" target="_blank">
+							گزارش پیامک
+
+						</a>
+					</li>
+					<li>
+						<a href="help_gozareshdarsadeshghal.html" target="_blank">
+							گزارش درصد اشغال
+
+						</a>
+					</li>
+					<li>
+						<a href="help_tarifsandogh.html" target="_blank">
+							تعریف صندوق
+
+						</a>
+					</li>
+					<li>
+						<a href="help_frontoffice.html" target="_blank">
+							فرانت آفیس
+
+						</a>
+					</li>
+					<li>
+						<a href="help_amaliatfrant.html" target="_blank">
+							عملیات فرانت آفیس
+
+						</a>
+					</li>
+					<li>
+						<a href="help_mavaredeferant.html" target="_blank">
+							موارد فرانت آفیس
+
+						</a>
+					</li>
+					<li>
+						<a href="help_dastrasiferant.html" target="_blank">
+							دسترسی فرانت آفیس
+
+						</a>
+					</li>
+					<li>
+						<a href="help_enteghadpishnahad.html" target="_blank">
+							انتقاد و پیشنهاد
+
+						</a>
+					</li>
+				</ul>
+			</td>
+			<td style="vertical-align:top;">
+				<div style="width:100%;height:100%;">
+					<iframe class="ifrm" id="tpage" src="help_login.html">
+					</iframe>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<script language="javascript">
+		attachClick(a_clicked,'a');
+	</script>
+</body>
+</html>
+
+

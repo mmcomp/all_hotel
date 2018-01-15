@@ -1,0 +1,117 @@
+<?php	session_start();
+	include_once("../kernel.php");
+	if(!isset($_SESSION['user_id']))
+                die(lang_fa_class::access_deny);
+        $se = security_class::auth((int)$_SESSION['user_id']);
+        if(!$se->can_view)
+                die(lang_fa_class::access_deny);
+	function loadMoeen($inp)
+        {
+                $inp = (int)$inp;
+                $aj = new anbar_class($inp);
+//		if (isset($_REQUEST["moeen_id"])?$_REQUEST["moeen_id"]:-1);
+                if($aj->moeen_id>0)
+                {
+                        $moeen = new moeen_class($aj->moeen_id);
+                        //if($moeen->id>0)
+                        $nama = $moeen->name.'('.$moeen->code.')';
+                        //else
+                                //$nama = 'ﺎﻨﺘﺧﺎﺑ';
+                }
+                else
+                {
+                        $nama = 'انتخاب';
+                }
+                $out = "<u><span onclick=\"window.location =('select_hesab.php?refPage=anbar.php&sel_id=$inp');\"  style='color:blue;cursor:pointer;' >$nama</span></u>";
+                return $out;
+        }
+	function add_item()
+        {
+                $fields = null;
+                foreach($_REQUEST as $key => $value)
+                {
+                        if(substr($key,0,4)=="new_")
+                        {
+                                if($key != "new_id")
+                                {
+                                        $fields[substr($key,4)] = $value;
+                                }
+                        }
+                }
+		$fields["en"] = 1;
+                $fi = "(";
+                $valu="(";
+                foreach ($fields as $field => $value)
+                {
+                        $fi.="`$field`,";
+                        $valu .="'$value',";
+                }
+                $fi=substr($fi,0,-1);
+                $valu=substr($valu,0,-1);
+                $fi.=")";
+                $valu.=")";
+                $query="insert into `anbar` $fi values $valu";
+                mysql_class::ex_sqlx($query);
+        }
+	function delete_item($id)
+	{
+		mysql_class::ex_sqlx("update `anbar` set `en`=0 where `id` = $id");
+	}
+	if(isset($_REQUEST['sel_id']))
+        {
+                $moeen_id = (int)$_REQUEST['moeen_id'];
+                $sel_id = $_REQUEST['sel_id'];
+                mysql_class::ex_sqlx("update `anbar` set `moeen_id`=$moeen_id where `id`=$sel_id");
+        }
+	function loadGardesh($inp)
+	{
+		$anb = new anbar_class((int)$inp);
+		if($anb->en==2)
+			$out = '<span style="color:blue;cursor:pointer;" onclick="wopen(\'anbar_gardani.php\',\'\',700,400);" ><u>انبارگردانی</u></span>';
+		else
+			$out = '<span style="color:#999;">انبارگردانی</span>';
+		return $out;
+	}
+	$grid = new jshowGrid_new("anbar","grid1");
+	$grid->whereClause="`en` in (1,2) order by `name`";
+	$grid->index_width = '20px';
+	$grid->columnHeaders[0] = 'گردش';
+	$grid->columnFunctions[0] = 'loadGardesh';
+	$grid->columnAccesses[0] = 0;
+        $grid->columnHeaders[1] = "انبار";
+       	$grid->columnHeaders[2] = "آدرس";
+	$grid->columnHeaders[3] = 'وضعیت';
+	$grid->columnLists[3] = array('انبارگردانی'=>2,'عادی'=>1);
+	$grid->columnHeaders[4] = null;
+	$grid->addFeild('id');
+	$grid->columnHeaders[5] = "حساب معین";
+	$grid->columnFunctions[5]='loadMoeen';
+	$grid->deleteFunction = 'delete_item';
+	$grid->addFunction = "add_item";
+	$grid->canAdd = FALSE;
+	$grid->canDelete = FALSE;
+        $grid->intial();
+   	$grid->executeQuery();
+        $out = $grid->getGrid();
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<!-- Style Includes -->
+		<link type="text/css" href="../css/style.css" rel="stylesheet" />
+		<!-- JavaScript Includes -->
+		<script type="text/javascript" src="../js/tavanir.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>
+		</title>
+	</head>
+	<body>
+                <?php echo security_class::blockIfBlocked($se,lang_fa_class::block); ?>
+		<div align="center">
+			<br/>
+			<br/>
+			<?php	echo $out;?>
+		</div>
+	</body>
+</html>

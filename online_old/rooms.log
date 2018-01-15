@@ -1,0 +1,76 @@
+
+array(2) {
+  [0]=>
+  array(6) {
+    ["room_typ_id"]=>
+    int(66)
+    ["count"]=>
+    int(16)
+    ["name"]=>
+    string(33) "آپارتمان یک خوابه "
+    ["ghimat"]=>
+    int(0)
+    ["zarfiat"]=>
+    string(1) "4"
+    ["room_ids"]=>
+    array(16) {
+      [0]=>
+      int(1)
+      [1]=>
+      int(2)
+      [2]=>
+      int(3)
+      [3]=>
+      int(4)
+      [4]=>
+      int(6)
+      [5]=>
+      int(7)
+      [6]=>
+      int(8)
+      [7]=>
+      int(9)
+      [8]=>
+      int(11)
+      [9]=>
+      int(12)
+      [10]=>
+      int(13)
+      [11]=>
+      int(14)
+      [12]=>
+      int(17)
+      [13]=>
+      int(18)
+      [14]=>
+      int(19)
+      [15]=>
+      int(20)
+    }
+  }
+  [1]=>
+  array(6) {
+    ["room_typ_id"]=>
+    int(67)
+    ["count"]=>
+    int(4)
+    ["name"]=>
+    string(32) "آپارتمان دو خوابه"
+    ["ghimat"]=>
+    int(0)
+    ["zarfiat"]=>
+    string(1) "6"
+    ["room_ids"]=>
+    array(4) {
+      [0]=>
+      int(5)
+      [1]=>
+      int(10)
+      [2]=>
+      int(16)
+      [3]=>
+      int(21)
+    }
+  }
+}
+    

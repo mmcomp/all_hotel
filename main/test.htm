@@ -1,0 +1,71 @@
+<html>
+	<head>
+<style type="text/css" media="screen">
+.square {
+    width: 144px;
+    height: 144px;
+    background: #f0f;
+    margin-right: 48px;
+    float: left;
+}
+
+.transformed {
+    -webkit-transform: rotate(15deg) scale(1.25, 0.5);
+    -moz-transform: rotate(15deg) scale(1.25, 0.5);
+    -ms-transform: rotate(15deg) scale(1.25, 0.5);
+    transform: rotate(15deg) scale(1.25, 0.5);
+}
+</style>
+	</head>
+	<body style="background: #26639C url('../img/pic_main.jpg') no-repeat;">
+<div class="square"><p>Lorem ipsum dolor sit amet.</p></div>
+<div class="square transformed"><p>Lorem ipsum dolor sit amet.</p></div>
+		<table>
+			<tr><td height="30px"></td></tr>
+			<tr><td width="190px" height="25px">&nbsp;</td><td height="25px" align="right"><a href="" style="text-decoration:none;color:#000000;"><img src="../img/pic_new.png"/></a></td></tr>
+			<tr><td width="190px" height="20px"></td><td height="20px"></td></tr>
+			<tr>
+				<td width="190px" height="25px">&nbsp;</td><td align="right"><a href="" style="text-decoration:none;color:#000000;">درباره ما</a></td>
+                        </tr>
+			<tr>                    
+                                <td width="190px" height="25px">&nbsp;</td><td align="right"><a href="" style="text-decoration:none;color:#000000;">اعضاء</a></td>
+                        </tr>
+			<tr>                    
+                                <td width="190px" height="25px">&nbsp;</td><td align="right"><a href="" style="text-decoration:none;color:#000000;">آثار</a></td>
+                        </tr>
+			<tr>                    
+                                <td width="190px" height="25px">&nbsp;</td><td align="right"><a href="" style="text-decoration:none;color:#000000;">تصاویر</a></td>
+                        </tr>
+			<tr>                    
+                                <td width="190px" height="25px">&nbsp;</td><td align="right"><a href="" style="text-decoration:none;color:#000000;">ویدئو</a></td>
+                        </tr>
+			<tr>                    
+                                <td width="190px" height="25px">&nbsp;</td><td align="right"><a href="" style="text-decoration:none;color:#000000;">تماس با ما</a></td>
+                        </tr>
+			<tr><td height="215px"></td></tr>
+		<td width="190px" height="25px">&nbsp;</td><td height="25px"></td><td width="120px" height="25px"></td><td> <a href="" style="text-decoration:none;color:#000000;">اخبار</a></td></tr>
+
+
+		</table>
+		<script language="javascript">
+			function showHint(obj,hint)
+			{
+				if(obj && obj.value=='')
+				{
+					obj.value = hint;
+					obj.style.color='gray';
+				}
+			}
+			function hideHint(obj,hint)
+			{
+				
+				if(obj && obj.value == hint && obj.style.color == 'gray')
+                                {
+                                        obj.value = '';
+					obj.style.color = 'black';
+                                }
+			}
+		</script>
+		<input type="text" style="color:gray;" onblur="showHint(this,'سلام');" onfocus="hideHint(this,'سلام');" value="سلام" />
+	</body>
+</html>

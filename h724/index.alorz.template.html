@@ -1,0 +1,636 @@
+	<!DOCTYPE html>
+	<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Raha</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta property="og:title" content="Raha Hotel Reservation System" />
+		<meta property="og:description" content="هتل البرز" />
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+		<!-- CSS -->
+		<link rel="stylesheet" href="css/owl.carousel.css">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/ionicons.min.css">
+		<link rel="stylesheet" href="css/animate.css">
+		<link rel="stylesheet" href="css/responsive.css">
+
+		<!-- Js -->
+		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>
+			window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
+		</script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/owl.carousel.min.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/min/waypoints.min.js"></script>
+		<script src="js/jquery.counterup.js"></script>
+
+		<!-- Google Map -->
+<!-- 		<script src="https://maps.googleapis.com/maps/api/js"></script>
+		<script src="js/google-map-init.js"></script> -->
+
+
+		<script src="js/main.js"></script>
+
+
+		<!-- MIRSAMIE -->
+		<!--     <script src="../js/jquery.js"></script> -->
+		<!--     <script src="../js/bootstrap.min.js"></script> -->
+		<script src="../js/persian-date.js"></script>
+		<script src="../js/persian-datepicker-0.4.5.min.js"></script>
+		<!--     <script type="text/javascript" src="../js/tavanir.js"></script> -->
+		<!-- CSS -->
+		<!--     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" /> -->
+		<link href="../css/persian-datepicker-0.4.5.min.css" rel="stylesheet" type="text/css" />
+		<link rel='shortcut icon' href='img/favicon.png' type='image/x-icon' />
+		<style>
+			@font-face {
+				font-family: 'irsans';
+				src: url('fonts/irsans.ttf') format('truetype');
+			}
+			
+			.khadamat-block{
+				text-align:center;	
+			}
+			.khadamat-block div,.khadamat-header{
+				background-color: #008aff4d;
+				padding: 15px;
+				border: 3px solid #eaeaea;
+			}
+			.khadamat-header{
+				text-align: center;
+				font-weight: bold;
+			}
+			.result-header {
+				text-align: center;
+				background-color: #000000;
+				padding: 15px;
+			}
+			
+			.panel1 {
+				border: 1px solid #eaeaea;
+				margin: 5px;
+				padding: 25px;
+				direction: rtl;
+				background-color: #1e1ead4d;
+				color: #98238a;
+				font-family: irsans;
+				font-size: 25px;
+			}
+			
+			.pdate {
+				margin-bottom: 5px;
+				width: 200px;
+			}
+			
+			select.form-control {
+				width: 200px;
+			}
+			
+			.room-block {
+				padding: 5px;
+				margin: 5px;
+				border: 1px solid #eaeaea;
+				cursor: pointer;
+				text-align: center;
+				background-color: #e6eda0;
+			}
+			
+			.room-block:hover {
+				background-color: #ecdcda;
+			}
+			
+			.room-block img {
+				height: 50px;
+				border: 1px solid #eaeaea;
+				padding: 5px;
+				margin: 10px;
+				background-color: #fff;
+			}
+			
+			.room-block select {}
+		</style>
+		<!-- MIRSAMIE -->
+
+	</head>
+
+	<body>
+
+
+
+		<!-- Header Start -->
+		<header>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<!-- header Nav Start -->
+						<nav class="navbar navbar-default">
+							<div class="container-fluid">
+								<!-- Brand and toggle get grouped for better mobile display -->
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+									<a class="navbar-brand" href="index.html">
+										<img src="img/logo.png" style="height:61px" alt="Raha">
+									</a>
+								</div>
+								<!-- Collect the nav links, forms, and other content for toggling -->
+								<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+									<ul class="nav navbar-nav navbar-right">
+<!-- 										<li><a href="http://tsq192.com" target="_blank">رزرو پرواز<i class="fa fa-plane"></i></a></li> -->
+										<li><a href="javascript:gotoReserve();" >رزرو هتل <i class="fa fa-suitcase" aria-hidden="true"></i></a></li>
+										<li><a href="">صفحه اصلی</a></li>
+										<!--                     <li><a href="#">پشتیبانی</a></li> -->
+										<!--                     <li><a href="#">خدمات ما</a></li> -->
+										<!--                     <li><a href="contact.html">ارتباط با ما</a></li> -->
+									</ul>
+								</div>
+<!-- 								<img src="img/flight.jpg" style="width:30px" /> -->
+								<!-- /.navbar-collapse -->
+							</div>
+							<!-- /.container-fluid -->
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- header close -->
+
+		<!-- Slider Start -->
+		<section id="slider">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-2">
+						<div class="block" style="direction:rtl;">
+							<h1 class="animated fadeInUp" style="text-align:center;">هتل البرز</h1>
+							<p class="animated fadeInUp" style="text-align:justify;">....</p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Wrapper Start -->
+		<section id="reserve_section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<div class="block">
+							<div class="section-title" style="text-align:center">
+								<h2>رزرو هتل البرز</h2>
+                #alert#
+							</div>
+							<div class="panel1" style="text-align:center">
+								<form method="post">
+									هتل
+									<select class="form-control1" name="hotel_id" id="hotel_id">
+									#hotels#
+									</select>
+									<br/>
+									تاریخ ورود
+									<input class="form-control1 pdate" name="aztarikh" id="aztarikh" placeholder="تاریخ ورود" /> تعداد شب اقامت
+									<select class="form-control1" name="shab" id="shab">
+                  #shab_combo#
+                  </select> بزرگسال
+									<select class="form-control1" name="adult" id="adult">
+                  #adult_combo#
+                  </select> کودک
+									<select class="form-control1" name="child" id="child">
+                  #child_combo#
+                  </select>
+									<button class="form-control1">
+                    جستجو  
+                  </button>
+								</form>
+							</div>
+              #result#
+						</div>
+					</div>
+					<!-- .col-md-12 close -->
+				</div>
+			</div>
+		</section>
+
+
+		<section id="intro">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7 col-sm-12">
+						<div class="block" style="direction:rtl;text-align:right;">
+							<div class="section-title">
+								<h2>درباره هتل البرز</h2>
+								<p>,.....</p>
+
+
+						</div>
+					</div>
+					<!-- .col-md-7 close -->
+					<div class="col-md-5 col-sm-12">
+						<div class="block">
+							<img src="img/wrapper-img.png" alt="Img">
+						</div>
+					</div>
+					<!-- .col-md-5 close -->
+				</div>
+			</div>
+		</section>
+
+		<section id="feature">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-6" style="direction:rtl;text-align:right;">
+						<!-- <h2>هدف ما ،بهترین</h2>
+          <p></p>
+
+<p>
+
+</p> --->
+						<h2>هتل البرز</h2>
+						<p></p>
+						<!--             <a href="#" class="btn btn-view-works">View Works</a> -->
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Service Start -->
+      
+		<section id="service">
+			<div class="container">
+				<div class="row">
+					<div class="section-title">
+						
+						<h2>خدمات ما</h2>
+						<p> </p>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-sm-6 col-md-3">
+						<div class="service-item">
+							<i class="icon ion-coffee"></i>
+							<h4>....</h4>
+							
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="service-item">
+							<i class="ion-compass"></i>
+							<h4>....</h4>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="service-item">
+							<i class="ion-image"></i>
+							<h4>....</h4>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="service-item">
+							<i class="ion-bug"></i>
+							<h4>....</h4>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-md-3">
+						<div class="service-item">
+							<i class="ion-planet"></i>
+							<h4></h4>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="service-item">
+							<i class="ion-earth"></i>
+							<h4></h4>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="service-item">
+							<i class="ion-earth"></i>
+							<h4></h4>
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="service-item">
+							<i class="ion-headphone"></i>
+							<h4></h4>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 col-md-3 col-md-offset-4">
+						<div class="service-item">
+							<i class="ion-leaf"></i>
+							<h4></h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Call to action Start -->
+		<section id="call-to-action">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="block" style="direction:rtl;text-align:right;">
+							<h2>توجه:</h2>
+							<p>1 -هزينه بار براي انتقال مسافر از هتل به اسكله و راه آهن بندر عباس به عهده خود مسافر مي باشد . </p>
+							<p>2  -  در  صورت طوفاني بودن دريا جابجايي مسافر از بندر لافت صورت خواهد پذيرفت و ما به التفاوت هزينه ها بعهده مسافر است . </p>
+							<p>در صورت امتناع از پرداخت ،مسئوليت جا ماندن به عهده خودمسافر مي باشد. </p>
+							<p>3  -  لازم به ذكر است شماره تماس و کد ملی مسافر قبل از ورود الزامي مي باشد. </p>
+							<p></p>
+							<p></p>
+							<p></p>
+
+							<!--               <a class="btn btn-default btn-call-to-action" href="#">Tell Us Your Story</a> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Content Start 
+		<section id="testimonial">
+			<div class="container">
+				<div class="row">
+					<div class="section-title text-center">
+						<h2>نرخ خدمات</h2>
+						<p></p>
+						<p>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="block">
+							<ul class="counter-box clearfix">
+								<li>
+									<div class="block">
+										<i class="ion-ios-chatboxes-outline"></i>
+										<h4></h4> 
+										<span class="counter"></span>
+									</div>
+								</li>
+								<li>
+									<div class="block">
+										<i class="ion-ios-glasses-outline"></i>
+										<h4></h4> 
+										<span class="counter"></span>
+									</div>
+								</li>
+								<li>
+									<div class="block">
+										<i class="ion-ios-compose-outline"></i>
+										<h4 class="counter"></h4> 
+										<span></span>
+									</div>
+								</li>
+								<li>
+									<div class="block">
+										<i class="ion-ios-timer-outline"></i>
+										<h4> </h4> 
+										<span class="counter"></span>
+									</div>
+								</li>
+								<li>
+									<div class="block">
+										<i class="ion-ios-timer-outline"></i>
+										<h4> </h4>
+										<span></span>
+									</div>
+								</li>
+								<li>
+									<div class="block">
+										<i class="ion-ios-timer-outline"></i>
+										<h4> </h4> 
+										<span class="counter"></span>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section> -->
+
+
+
+
+
+
+
+
+
+		<!-- footer Start -->
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+                      
+						<div class="footer-manu">
+							<ul>
+								<li><a href="../main/login.php">ورود همکاران</a></li>
+							</ul>
+						</div>
+						<p>
+							آدرس :
+							
+						 <br/>
+							تلفن :
+							
+						</p>
+						<p>طراحی و اجرا توسط &copy; <a href="http://www.datiscompany.ir">شرکت داتیس</a>. کلیه حقوق متعلق به هتل البرز می باشد.</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">قوانین و مقررات</h4>
+					</div>
+					<div class="modal-body">
+						<p>
+							با کلیک برروی دکمه ادامه شما با قوانین و مقررات ذیل موافقت کرده اید ، در غیر اینصورت برروی دکمه انصراف کلیک کنید.
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="gotoBank();">پذیرش و ادامه</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		
+		<form id="frm2" action="https://sep.shaparak.ir/Payment.aspx" method="POST">
+			<input name="Amount" id="Amount" type="hidden" />
+			<input name="MID" id="MID" type="hidden" value="10615632" />
+			<input name="ResNum" id="ResNum" type="hidden" />
+			<input name="RedirectURL" id="RedirectURL" type="hidden" value="#url_main#" />
+		</form>
+		<script>
+			$(".pdate").persianDatepicker({
+				timePicker: {
+					enabled: false
+				},
+				format: "YYYY/MM/DD"
+			});
+			function setEzafe(i,ted){
+				if($("#room-select-"+i+"-ezafe").length===1){
+					var ht = '';
+					for(var j = 0;j <= ted;j++){
+						ht += '<option value="'+j+'">'+j+'</option>';
+					}
+					$("#room-select-"+i+"-ezafe").html(ht);
+				}
+			}
+			function calcGhimatMain(i){
+				if($("#room-select-"+i).length===1 && $("#room-select-"+i+"-ezafe").length===1){
+					var tedad = parseInt($("#room-select-"+i).val(),10);
+					var zarfiat_ezafe = parseInt($("#room-select-"+i+"-ezafe").data('zarfiat_ezafe'),10);
+					if(!isNaN(zarfiat_ezafe) && !isNaN(tedad)){
+						setEzafe(i,tedad*zarfiat_ezafe);
+					}else{
+						setEzafe(i,0);
+					}
+				}
+				calcGhimat();
+			}
+			function calcGhimat(){
+				var sum = 0;
+				$(".room-selection").each(function(id,feild){
+					var tedad = parseInt($(feild).val(),10);
+					var ghimat = parseInt($(feild).data('ghimat'),10);
+					var i = $(feild).prop('id').split('-')[2];
+					var ghimat_ezafe = 0;
+					if($("#room-select-"+i+"-ezafe").length===1){
+						ghimat_ezafe = parseInt($("#room-select-"+i+"-ezafe").data('ghimat_ezafe'),10);
+						var ted = parseInt($("#room-select-"+i+"-ezafe").val(),10);
+						if(isNaN(ghimat_ezafe) || isNaN(ted)){
+							ghimat_ezafe = 0;
+						}else{
+							ghimat_ezafe = ghimat_ezafe*ted;
+						}
+					}
+					if(!isNaN(tedad) && !isNaN(ghimat)){
+						sum += tedad*ghimat;
+						sum += ghimat_ezafe;
+					}
+				});
+				$(".ghimat-class").text(sum);
+				return sum;
+			}
+			function nextPhase(){
+				$("#frm1").submit();
+			}
+			function nextPhase1(){
+				var sum = 0;
+				var selected_zarfiat = 0;
+				var adult = isNaN(parseInt($(".adult-class").text(),10))?0:parseInt($(".adult-class").text(),10);
+				var child = isNaN(parseInt($(".child-class").text(),10))?0:parseInt($(".child-class").text(),10);
+				var nafar = adult + child;
+				var misezafe = false;
+				$(".room-selection").each(function(id,feild){
+					var tedad = parseInt($(feild).val(),10);
+					var ghimat = parseInt($(feild).data('ghimat'),10);
+					var zarfiat = parseInt($(feild).data('zarfiat'),10);
+					var ghimat_ezafe = 0;
+					var zarfiat_ezafe = 0;
+					var i = $(feild).prop('id').split('-')[2];
+					var ted = 0;
+					var displayed_rcount = parseInt($(feild).data('rcount'),10);
+					if($("#room-select-"+i+"-ezafe").length===1){
+						ghimat_ezafe = parseInt($(feild).data('ghimat_ezafe'),10);
+						zarfiat_ezafe = parseInt($("#room-select-"+i+"-ezafe").data('zarfiat_ezafe'),10);
+						ted = parseInt($("#room-select-"+i+"-ezafe").val(),10);
+						if(isNaN(ghimat_ezafe) || isNaN(ted) || isNaN(zarfiat_ezafe) || isNaN(displayed_rcount)){
+							ghimat_ezafe = 0;
+							zarfiat_ezafe = 0;
+						}else{
+							ghimat_ezafe = ghimat_ezafe*ted;
+							if(displayed_rcount<ted){
+								misezafe = true;
+								ted = 0;
+							}
+						}
+					}
+
+					if(!isNaN(tedad) && !isNaN(ghimat) && !isNaN(zarfiat)){
+						sum += tedad*ghimat;
+						sum += ghimat_ezafe;
+						selected_zarfiat += tedad*zarfiat;
+						selected_zarfiat += ted;
+					}
+				});
+				$(".ghimat-class").text(sum);
+				if(selected_zarfiat<nafar || nafar === 0){
+					alert('تعداد مسافر با ظرفیت حداکثری اتاق ها هماهنگی ندارد');
+				}else if(misezafe){
+					alert('تعداد سرویس اضافه اشتباه وارد شده است');
+				}else{
+					var err = false;
+					$("input[required],textarea[required]").each(function(id,feild){
+						if($(feild).val().trim()===''){
+							$(feild).css('border','dashed red 2px');
+							err = true;
+						}else{
+							$(feild).css('border','');
+						}
+					});
+					if(err){
+						alert('لطفا قسمت های قرمز را وارد کنید');
+					}else{
+						$("#myModal").modal('show');
+					}
+				}
+			}
+			function gotoBank(){
+// 				alert('Connecting to BANK!!!!');
+				var rnd = Math.random(1000,10000);
+				var sum = calcGhimat();
+				$("#ResNum").val(rnd);
+				$("#Amount").val(sum);
+				$("#frm2").submit();
+				/*
+				$.get("req.php",{req:req},function(result){
+					$("#ResNum").val(result.ResNum);
+					$("#Amount").val(result.sum);
+					$("#frm2").submit();
+					
+				});
+				*/
+			}
+			function gotoReserve(){
+				$('html, body').animate({
+						scrollTop: $("#reserve_section").offset().top
+				}, 2000);
+			}
+		</script>
+		#scrollTo#
+		<script>
+			//       document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>');
+		</script>
+
+
+	</body>
+
+	</html>
