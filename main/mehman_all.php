@@ -6,6 +6,20 @@
         $se = security_class::auth((int)$_SESSION['user_id']);
         if(!$se->can_view)
                 die(lang_fa_class::access_deny);
+
+if(isset($_REQUEST['amaken']) && $_REQUEST['amaken']=='true'){
+// 	var_dump($_REQUEST);
+	$mehman_id = $_REQUEST['mehman_id'];
+	$mehman_object = new mehman_class($mehman_id);
+// 	var_dump($mehman_object);
+	$am = new amaken('','','');
+	$am->getMehman($mehman_object);
+	$out = $am->sendMehman();
+	mysql_class::ex_sqlx("update mehman set amaken = '".$out."' where id = $mehman_id");
+	die($out);
+}
+
+
 	function loadKeys($fkey)
 	{
 		$out = '<select name="fkey" id="fkey" class="inp" onchange="frm_submit();" >';
@@ -177,13 +191,16 @@
 	if((int)$_SESSION['typ']==1)
 		$user_id = (int)$_SESSION['user_id'];
 	$tmp = room_det_class::loadReserve_id_habibi($aztarikh,$tatarikh,$room_id);
-//var_dump ($tmp);
+// 	echo "\$tmp : ";
+// 	var_dump ($tmp);
+// 	echo "\n\$room_id = $room_id\n";
 	if(($tmp!='') && ($room_id!=-1))
 		$shart = " `reserve_id` in ($tmp) and `room_id`='$room_id' and `room_id`>0  order by `room_id`";
 	elseif(($tmp!='') && ($room_id==-1))
 		$shart = " `reserve_id` in ($tmp) and `room_id`>0  order by `room_id`";
 	else
 		$shart = "0=1 order by `room_id`";
+	$shart = '1=1 order by reserve_id,room_id';
 	$out = '';
 	$msg = 'میهمانی یافت نشد';
 // echo $shart;	
@@ -414,7 +431,7 @@ $root="";
                                             <th style="text-align:right;">نفر اضافی</th>
                                             <th style="text-align:right;">تاریخ ورود</th>
                                             <th style="text-align:right;">تاریخ خروج</th>
-                                            <th style="text-align:right;">خروج</th>
+                                            <th style="text-align:right;">اماکن</th>
                                             
                                         </tr>
                                     </thead>
@@ -422,11 +439,12 @@ $root="";
     <?php
 $i=1;
          mysql_class::ex_sql("select * from `mehman` where $shart ",$s); 
+// 																			echo "select * from `mehman` where $shart ";
  while ($ss = mysql_fetch_array($s))
 	{
            $rid = $ss['room_id'];
            mysql_class::ex_sql("select `name` from `room` where `id` = '$rid'",$qqqq);
-           while($row = mysql_fetch_array($qqqq))
+           if($row = mysql_fetch_array($qqqq))
             $rname = $row['name'];
      $gender = $ss['gender'];
            $gen="";
@@ -459,6 +477,13 @@ $i=1;
      mysql_class::ex_sql("select * from `statics` where `fkey`='نسبت' and `id` = '$nes'",$nesb);
      $rrrrrr = mysql_fetch_array($nesb);
      $nesba = $rrrrrr['fvalue'];
+	 	 if(trim($ss['amaken'])==''){
+	 	 		$amaken = '<a href="javascript:sendAmaken('.$ss['id'].',this);">ارسال</a>';
+		 }else if(trim($ss['amaken'])=='OK'){
+			  $amaken = 'ارسال شده';
+		 }else{
+			  $amaken = 'خطا : '.trim($ss['amaken']).' <a href="javascript:sendAmaken('.$ss['id'].',this);">ارسال مجدد</a>';
+		 }
            if(fmod($i,2)!=0){
               echo "
                <tr class='odd'>
@@ -490,7 +515,7 @@ $i=1;
                <td>$ss[tedad_extra]</td>
                <td>$ss[vorood]</td>
                <td>$ss[khorooj]</td>
-               <td></td>
+               <td>$amaken</td>
                </tr>
         ";
             $i++;}
@@ -524,7 +549,7 @@ $i=1;
                <td>$ss[tedad_extra]</td>
                <td>$ss[vorood]</td>
                <td>$ss[khorooj]</td>
-               <td></td>
+               <td>$amaken</td>
                </tr>
         ";
             $i++;}}
@@ -547,7 +572,7 @@ $i=1;
             </div>
             <!-- /.row -->
                 
-                <a target='_blank' href='amaken_list.php?h_id=<?php echo $h_id;?>&'><button class="btn btn-pink">لیست اماکن</button></a>
+<!--                 <a target='_blank' href='amaken_list.php?h_id=<?php echo $h_id;?>&'><button class="btn btn-pink">لیست اماکن</button></a> -->
                
 			</div>
 		</div>
@@ -670,7 +695,24 @@ $i=1;
     }
 					
 
-
+		function sendAmaken(id,dobj){
+			var data = {
+				mehman_id : id,
+				amaken : true
+			};
+			console.log(data);
+// 			if(dobj){
+// 				$(dobj).after('<img src="img/loading-gears.gif" width="40px" class="lod-'+id+'" />');
+// 			}
+			$.post("",data,function(result){
+// 				$(".lod-"+id).remove();
+				console.log(result);
+				alert('نتیجه'+"\n"+result);
+				location.reload();
+			}).fail(function(){
+// 				$(".lod-"+id).remove();
+			});
+		}
 		
 	</script>
 

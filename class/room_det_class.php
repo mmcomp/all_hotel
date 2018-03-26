@@ -229,8 +229,8 @@
 			else
 				$endDate = date("Y-m-d 14:00:00",strtotime($endDate));
                         $limit_day = TRUE;
-                        if(jdate("m/d",strtotime($startDate)) == audit_class::enToPer($conf->limitDate) || jdate("m/d",strtotime($endDate)) == audit_class::enToPer($conf->limitDate))
-                                $limit_day = FALSE;
+//                         if(jdate("m/d",strtotime($startDate)) == audit_class::enToPer($conf->limitDate) || jdate("m/d",strtotime($endDate)) == audit_class::enToPer($conf->limitDate))
+//                                 $limit_day = FALSE;
 			$user_id = (int)$_SESSION["user_id"];
 			$out = FALSE;
 			$hotel = new hotel_class($hotel_id);
@@ -240,12 +240,14 @@
 			$room_ok = (is_array($room_typ_id) && (int)$room_typ_id[0]>0);
 			$r_det = room_det_class::loadByReserve($reserve->id);
 			$r_det = $r_det[0];
-                        if($room_ok)
-                                for($j = 0;$j < count($room_typ_id);$j++)
+// 			echo "room_ok = ".var_export($room_ok,true);
+// 			die();
+			if($room_ok)
+				for($j = 0;$j < count($room_typ_id);$j++)
 				{
 					$rm = new room_class($room_typ_id[$j]);
 					$shi = room_det_class::roomIdAvailable($room_typ_id[$j],$startDate,$endDate);
-                                        if($shi!=null)
+					if($shi!=null)
 					{
 						$is_last = FALSE;
 						for($sag = 0;$sag < count($r_det);$sag++)
@@ -287,6 +289,8 @@
 					}
 				}
 			//echo "h = ".var_export($hotel->hotelAvailableBetween($startDate,$endDate),TRUE).",gh = ".var_export($ghimat_darad,TRUE).",del = $delay,roomok = ".var_export($room_ok,TRUE).",limit_day=".var_export($limit_day,TRUE);
+// 			echo var_export($hotel->hotelAvailableBetween($startDate,$endDate),TRUE).' && '.var_export($ghimat_darad,true).' && '.var_export(($delay>0),true).' && '.var_export($room_ok,true).' && '.var_export($limit_day,true);
+// 			die();
 			if($hotel->hotelAvailableBetween($startDate,$endDate) && $ghimat_darad && $delay>0 && $room_ok && $limit_day)
 			{
 				$last_room_typ_id = $reserve->room_det[0]->room_id;
@@ -1214,9 +1218,11 @@ AND `room_det`.`reserve_id` >0 $aztar_shart $tatar_shart $shart $name_shart $res
 					$wer = '';
 					if($_SESSION['daftar_id']!=49){
 						$hs = daftar_class::hotelList($_SESSION['daftar_id']);
-						$wer = "`hotel_id` in (".implode(',',$hs).")";
+						$wer = "`hotel_id` in (".implode(',',$hs).") and";
 					}
-					mysql_class::ex_sql(" SELECT `reserve_id`,`aztarikh`,`tatarikh` FROM `room_det` left join `room` on (`room`.`id`=`room_id`) WHERE $wer ((date(`aztarikh`) >= '$aztarikh' and date(`tatarikh`) <= '$tatarikh')||(date(`aztarikh`)< '$aztarikh' and date(`tatarikh`) <= '$tatarikh' and date(`tatarikh`)> '$tatarikh')||(date(`aztarikh`)>= '$aztarikh' and date(`tatarikh`) > '$tatarikh' and date(`aztarikh`)< '$aztarikh')||(date(`aztarikh`)< '$aztarikh' and date(`tatarikh`) > '$tatarikh')) and `reserve_id`>0 group by `reserve_id`",$q);
+					$qur = "SELECT `reserve_id`,`aztarikh`,`tatarikh` FROM `room_det` left join `room` on (`room`.`id`=`room_id`) WHERE $wer (('$aztarikh'>=date(aztarikh) and '$aztarikh'<=date(tatarikh)) or ('$tatarikh'>=date(aztarikh) and '$tatarikh'<=date(tatarikh)) or ('$tatarikh'>=date(tatarikh) and '$aztarikh'<=date(aztarikh)))/*((date(`aztarikh`) >= '$aztarikh' and date(`tatarikh`) <= '$tatarikh')||(date(`aztarikh`)< '$aztarikh' and date(`tatarikh`) <= '$tatarikh' and date(`tatarikh`)> '$tatarikh')||(date(`aztarikh`)>= '$aztarikh' and date(`tatarikh`) > '$tatarikh' and date(`aztarikh`)< '$aztarikh')||(date(`aztarikh`)< '$aztarikh' and date(`tatarikh`) > '$tatarikh'))*/ and `reserve_id`>0 group by `reserve_id`";
+					mysql_class::ex_sql($qur,$q);
+// 					echo $qur;
 					while($r = mysql_fetch_array($q))
 						$out .=($out==''? '':',' ).$r['reserve_id'];
 				}

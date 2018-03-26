@@ -64,8 +64,18 @@
 				$this->tedad_extra=$r['tedad_extra'];
 				$this->khorooj=$r['khorooj'];
 				$this->room_id=(int)$r['room_id'];
+				$this->room_name = '';
 				$this->user_id_v=(int)$r['user_id_v'];
 				$this->user_id_kh=(int)$r['user_id_kh'];
+				$this->vorood = '';
+				mysql_class::ex_sql("select name from `room` where `id` = ".$this->room_id,$q);
+				if($r = mysql_fetch_array($q)){
+					$this->room_name = $r['name'];
+				}
+				mysql_class::ex_sql("select date(min(aztarikh)) vorood from `room_det` where `reserve_id` = ".$this->reserve_id,$q);
+				if($r = mysql_fetch_array($q)){
+					$this->vorood = $r['vorood'];
+				}
 			//	$this->user_id=(int)$r['user_id'];
 			}
 		}
